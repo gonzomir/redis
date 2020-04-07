@@ -1,22 +1,27 @@
+# A class to install Redis inside your Chassis box.
 class redis (
-	$path         = "/vagrant/extensions/redis",
-	$php_version  = $::redis_config[php]
+	$config
 ) {
-	package { 'redis-server':
-		ensure => latest
+	if ( ! empty( $config[disabled_extensions] ) and 'chassis/redis' in $config[disabled_extensions] ) {
+		$package = absent
+	} else {
+		$package = latest
 	}
-	
-    if versioncmp( "${php_version}", '5.6' ) < 0 {
+	package { 'redis-server':
+		ensure => $package
+	}
+
+    if versioncmp( $config[php], '5.6' ) < 0 {
         package { 'php5-redis':
-            ensure  => latest,
+            ensure  => $package,
             require => Package['php5-redis'],
             notify  => Service["php5-fpm"],
         }
     } else {
         package { 'php-redis':
-          ensure  => latest,
-          require => Package["php${php_version}-fpm"],
-          notify  => Service["php${php_version}-fpm"],
+          ensure  => $package,
+          require => Package["php${config[php]}-fpm"],
+          notify  => Service["php${config[php]}-fpm"],
         }
     }
 }
