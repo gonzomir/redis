@@ -15,7 +15,7 @@ class redis (
         package { 'php5-redis':
             ensure  => $package,
             require => Package['php5-redis'],
-            notify  => Service["php5-fpm"],
+            notify  => Service['php5-fpm'],
         }
     } else {
         package { 'php-redis':
