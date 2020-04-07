@@ -2,7 +2,11 @@
 A Chassis extension to install and configure Redis on your server.
 
 ## Usage
-1. Add this extension to your extensions directory
+1. Add this extension to your extensions directory `git clone git@github.com:Chassis/redis.git extensions/redis` or alternatively add the following to one of your [`.yaml`](https://github.com/Chassis/Chassis/blob/master/config.yaml) files:
+   ```
+   extensions:
+     - chassis/redis
+   ```
 2. Run `vagrant provision`
 3. Install `wp-redis` plugin, and symlink `object-cache.php` to your content directory, if you haven't already. example:
 ```
