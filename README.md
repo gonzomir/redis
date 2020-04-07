@@ -18,3 +18,7 @@ ln -s wp-redis/object-cache.php .
 ```
 
 (Note: wp-redis might be handling the symlinking part soon, see [#126](https://github.com/pantheon-systems/wp-redis/issues/126), eliminating the need for step 3 altogether)
+
+## Contributors
+
+Props to [@shadyvb](https://github.com/shadyvb/) for the initial versions of the extension, and our [contributors](https://github.com/Chassis/redis/graphs/contributors).
