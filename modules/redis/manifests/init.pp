@@ -14,11 +14,11 @@ class redis (
     if versioncmp( $config[php], '5.6' ) < 0 {
         package { 'php5-redis':
             ensure  => $package,
-            require => Package['php5-redis'],
+            require => Package['php5-fpm'],
             notify  => Service['php5-fpm'],
         }
     } else {
-        package { 'php-redis':
+        package { "php${config[php]}-redis":
           ensure  => $package,
           require => Package["php${config[php]}-fpm"],
           notify  => Service["php${config[php]}-fpm"],
